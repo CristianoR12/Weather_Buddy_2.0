@@ -1,0 +1,9 @@
+.no_city {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 0;
+    text-align: center;
+    color: rgb(226, 13, 13);
+    font-size: 2.0em;
+    position: relative;
+    bottom: -60px;
+}

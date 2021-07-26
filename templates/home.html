@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block body %} 
+<div class="home"> 
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css')}}"> 
+  <p>How is the weather in </p>
+
+  <div class="city_name"> 
+    <form action="/register" method="get">
+      <input autocomplete="off" autofocus name="c_name" placeholder="City name" type="text">  
+    </form>
+  </div>
+
+  <p>now?</p>   
+   
+</div>   
+
+{% endblock %}

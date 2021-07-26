@@ -1,0 +1,14 @@
+header h1.logo {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 4px;
+    font-size: 1.8em;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    text-align: center;
+    /*text-decoration: underline;*/
+    border-bottom: 3px solid;  
+    border-width: thin;  
+    position: relative;
+    bottom: -20px;    
+    }
+

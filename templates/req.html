@@ -1,0 +1,81 @@
+{% extends 'layout.html' %} 
+
+{% block body %} 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">  
+
+    <div class="container">  
+        {% if (arguments[0]['id0'] == 1) and (arguments[1]['id1'] == 0) %}     
+            <p>{{arguments[0]['city0']}}</p>
+            <div class="t">
+            <p>{{arguments[0]['temperature0']}}<span>°C</span></p>
+            </div>
+            <p>{{arguments[0]['description0']}}</p>
+
+        {% elif (arguments[0]['id0'] == 1) and (arguments[1]['id1'] == 2) and (arguments[2]['id2'] == 0) %}
+            <p>{{arguments[1]['city1']}}</p>
+            <div class="t">
+            <p>{{arguments[1]['temperature1']}}<span>°C</span></p>
+            </div>
+            <p>{{arguments[1]['description1']}}</p>
+
+        {% elif (arguments[0]['id0'] == 1) and (arguments[1]['id1'] == 2) and (arguments[2]['id2'] == 3) and (arguments[3]['id3'] == 0)%}
+            <p>{{arguments[2]['city2']}}</p>
+            <div class="t">
+            <p>{{arguments[2]['temperature2']}}<span>°C</span></p>
+            </div>
+            <p>{{arguments[2]['description2']}}</p>
+
+        {% elif (arguments[0]['id0'] == 1) and (arguments[1]['id1'] == 2) and (arguments[2]['id2'] == 3) and (arguments[3]['id3'] == 4) and (arguments[4]['id4'] == 0)%}
+            <p>{{arguments[3]['city3']}}</p>
+            <div class="t">
+            <p>{{arguments[3]['temperature3']}}<span>°C</span></p>
+            </div>
+            <p>{{arguments[3]['description3']}}</p>
+
+        {% elif (arguments[0]['id0'] == 1) and (arguments[1]['id1'] == 2) and (arguments[2]['id2'] == 3) and (arguments[3]['id3'] == 4) and (arguments[4]['id4'] == 5) %}
+            <p>{{arguments[4]['city4']}}</p>
+            <div class="t">
+            <p>{{arguments[4]['temperature4']}}<span>°C</span></p>
+            </div>
+            <p>{{arguments[4]['description4']}}</p>
+
+        {% endif %}
+    </div>
+    <div class="container2">
+        <div class="row">                
+                <div class="col">           
+                    <p>{{arguments[0]['city0']}}</p>
+                    <div class="t">
+                    <p>{{arguments[0]['temperature0']}}<span>°C</span></p>
+                    </div>
+                    <p>{{arguments[0]['description0']}}</p>
+                </div> 
+                <div class="col">           
+                    <p>{{arguments[1]['city1']}}</p>
+                    <div class="t">
+                    <p>{{arguments[1]['temperature1']}}<span>°C</span></p>
+                    </div>
+                    <p>{{arguments[1]['description1']}}</p>
+                </div>
+                <div class="col">           
+                    <p>{{arguments[2]['city2']}}</p>
+                    <div class="t">
+                    <p>{{arguments[2]['temperature2']}}<span>°C</span></p>
+                    </div>
+                    <p>{{arguments[2]['description2']}}</p>
+                </div>
+                <div class="col">           
+                    <p>{{arguments[3]['city3']}}</p>
+                    <div class="t">
+                    <p>{{arguments[3]['temperature3']}}<span>°C</span></p>
+                    </div>
+                    <p>{{arguments[3]['description3']}}</p>
+                </div>
+                <div class="col">           
+                    <p>{{arguments[4]['city4']}}</p>
+                    <div class="t">
+                    <p>{{arguments[4]['temperature4']}}<span>°C</span></p>
+                    </div>
+                    <p>{{arguments[4]['description4']}}</p>
+                </div>
+{% endblock %}
