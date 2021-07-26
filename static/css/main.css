@@ -5,7 +5,6 @@ header h1.logo {
     color: rgb(0, 0, 0);
     text-transform: uppercase;
     text-align: center;
-    /*text-decoration: underline;*/
     border-bottom: 3px solid;  
     border-width: thin;  
     position: relative;

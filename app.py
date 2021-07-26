@@ -8,6 +8,7 @@ app = Flask(__name__)
 
 bootstrap = Bootstrap(app)
 
+#Database implementation
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
@@ -17,31 +18,36 @@ mydb = mysql.connector.connect(
   
 )
 
+#Database table management => Checks if there is a preexistent table  
 db = mydb.cursor()
 db.execute("DROP TABLE IF EXISTS forecast")
 db.execute("CREATE TABLE forecast (id INT AUTO_INCREMENT PRIMARY KEY, city TEXT NOT NULL, temperature TEXT NOT NULL, description TEXT NOT NULL)") 
 
-
+#Index route
 @app.route('/')
 def index():
     return render_template("home.html")
 
-
+#Route to manage the data received from user e.g., city name
 @app.route('/register', methods=['GET'])
 def register():
     c_name = request.args.get("c_name")
     city_name=str(c_name)  
-
+    
+    #Get the JSON from API
     req = requests.get('http://api.openweathermap.org/data/2.5/weather?q='+city_name+'&appid=9564059a8dcacce6e2ac0bcf2a543290&units=metric')
     data = json.loads(req.content) 
 
+    #City name not recognized
     if data.get('cod') != 200:
         return render_template("error.html", message="Sorry. We couldn't find the specified city.")
    
+    #JSON data filtering
     city=data['name']
     temperature=int(data['main']['temp'])
     description=data['weather'][0]['description']
 
+    #Data picked from JSON sent to the database
     sql = "INSERT INTO forecast (city, temperature, description) VALUES (%s, %s, %s)"
     val = (city, temperature, description)
     db.execute(sql,val)
@@ -49,7 +55,7 @@ def register():
     
     return redirect('/req')   
 
-
+#Route to manage the data from database to be exhibited
 @app.route('/req', methods=['GET'])
 def test():    
 
@@ -105,14 +111,12 @@ def test():
         }
         ]
 
-    #myList_Total = myList + myList2 + myList3 + myList4 + myList5
     myList_Total =  myList + myList2 + myList3 + myList4 + myList5 
     print(myList_Total)
     
-    #return render_template("req.html", arguments=myList_Total, arguments1=myList2, arguments2=myList3, arguments3=myList4, arguments4=myList5)
     return render_template("req.html", arguments=myList_Total)
 
-
+#Route to get the cache data for the specified city_name
 @app.route("/weather/<city_name>", methods=['GET'])
 def get_city_name(city_name):
     c_name=str(city_name)        
@@ -133,7 +137,7 @@ def get_city_name(city_name):
 
     return jsonify({'result (Obs.: If there is just one result, it is because the database has no record of the requested city, and the information displayed comes from the API': info })
     
-
+#Route to get all the cached cities, up to the latest 'n' entries or max_number 
 @app.route("/weather", methods=['GET'])
 def max_number():
     max_number = int(request.args.get("max"))       
