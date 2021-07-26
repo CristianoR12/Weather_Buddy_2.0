@@ -10,12 +10,11 @@ bootstrap = Bootstrap(app)
 
 #Database implementation
 mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="Psw_123456#!",
-  database="weather",
-  auth_plugin='mysql_native_password'
-  
+  host="your_host",
+  user="your_user",
+  password="your_password",
+  database="your_database",
+  auth_plugin='your_auth_plugin'  
 )
 
 #Database table management => Checks if there is a preexistent table  
