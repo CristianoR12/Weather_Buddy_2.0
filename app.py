@@ -19,11 +19,13 @@ bootstrap = Bootstrap(app)
 
 #Database implementation
 mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="Psw_123456#!",
-  database="weather"
+  host="your_host",
+  user="your_user",
+  password="your_password",
+  database="your_database",
+  auth_plugin='your_auth_plugin'  
 )
+
 
 #Database implementation
 #Database table management => Checks if there is a preexistent table  
@@ -41,7 +43,7 @@ def index():
 def register():
     c_name = request.args.get("c_name")
     city_name=str(c_name)  
-    API_KEY = '9564059a8dcacce6e2ac0bcf2a543290'
+    API_KEY = 'Your_Key'
     
     #Get the JSON from API
     req = requests.get('http://api.openweathermap.org/data/2.5/weather?q='+city_name+'&appid='+API_KEY+'&units=metric')
@@ -134,7 +136,7 @@ def test():
 @cache.cached(timeout=300)#cache must live for 300s or 5min
 def get_city_name(city_name):
     c_name=str(city_name)    
-    API_KEY = '9564059a8dcacce6e2ac0bcf2a543290'    
+    API_KEY = 'Your_Key'   
     db.execute(f"SELECT * FROM forecast WHERE city = '{city_name}'")    
     info = db.fetchall()
     test=info           
