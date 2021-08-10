@@ -32,9 +32,10 @@ def index():
 def register():
     c_name = request.args.get("c_name")
     city_name=str(c_name)  
+    API_KEY = '9564059a8dcacce6e2ac0bcf2a543290'
     
     #Get the JSON from API
-    req = requests.get('http://api.openweathermap.org/data/2.5/weather?q='+city_name+'&appid=9564059a8dcacce6e2ac0bcf2a543290&units=metric')
+    req = requests.get('http://api.openweathermap.org/data/2.5/weather?q='+city_name+'&appid='+API_KEY+'&units=metric')
     data = json.loads(req.content) 
 
     #City name not recognized
