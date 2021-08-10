@@ -5,18 +5,18 @@ import requests
 import json
 
 app = Flask(__name__)
+app.config['DEBUG'] = True
 
 bootstrap = Bootstrap(app)
 
-#Database implementation
 mydb = mysql.connector.connect(
-  host="your_host",
-  user="your_user",
-  password="your_password",
-  database="your_database",
-  auth_plugin='your_auth_plugin'  
+  host="localhost",
+  user="root",
+  password="Psw_123456#!",
+  database="weather"
 )
 
+#Database implementation
 #Database table management => Checks if there is a preexistent table  
 db = mydb.cursor()
 db.execute("DROP TABLE IF EXISTS forecast")
@@ -34,7 +34,7 @@ def register():
     city_name=str(c_name)  
     
     #Get the JSON from API
-    req = requests.get('http://api.openweathermap.org/data/2.5/weather?q='+city_name+'&appid={YOUR_API}&units=metric')
+    req = requests.get('http://api.openweathermap.org/data/2.5/weather?q='+city_name+'&appid=9564059a8dcacce6e2ac0bcf2a543290&units=metric')
     data = json.loads(req.content) 
 
     #City name not recognized
@@ -109,10 +109,9 @@ def test():
             'description4': ''
         }
         ]
-
     myList_Total =  myList + myList2 + myList3 + myList4 + myList5 
     print(myList_Total)
-    
+   
     return render_template("req.html", arguments=myList_Total)
 
 #Route to get the cache data for the specified city_name
@@ -135,7 +134,7 @@ def get_city_name(city_name):
         }
 
     return jsonify({'result (Obs.: If there is just one result, it is because the database has no record of the requested city, and the information displayed comes from the API': info })
-    
+   
 #Route to get all the cached cities, up to the latest 'n' entries or max_number 
 @app.route("/weather", methods=['GET'])
 def max_number():
