@@ -6,8 +6,9 @@ header h1.logo {
     color: rgb(0, 0, 0);
     text-transform: uppercase;
     text-align: center;
-    border-bottom: 3px solid;  
-    border-width: thin;  
+    border-bottom: 8px solid;  
+    border-image: url(border.png) 25 round;
+    /*border-width: thin;  */
     position: relative;
     bottom: -20px;    
 }

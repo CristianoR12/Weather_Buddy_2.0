@@ -17,6 +17,7 @@ cache = Cache(app)
 
 bootstrap = Bootstrap(app)
 
+#Database implementation
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
@@ -132,14 +133,15 @@ def test():
 @app.route("/weather/<city_name>", methods=['GET'])
 @cache.cached(timeout=300)#cache must live for 300s or 5min
 def get_city_name(city_name):
-    c_name=str(city_name)        
+    c_name=str(city_name)    
+    API_KEY = '9564059a8dcacce6e2ac0bcf2a543290'    
     db.execute(f"SELECT * FROM forecast WHERE city = '{city_name}'")    
     info = db.fetchall()
     test=info           
     
     #If the city is not yet registered in the database, retrieve data from the API      
     if not test:  
-        req = requests.get('http://api.openweathermap.org/data/2.5/weather?q='+c_name+'&appid=9564059a8dcacce6e2ac0bcf2a543290&units=metric')
+        req = requests.get('http://api.openweathermap.org/data/2.5/weather?q='+c_name+'&appid='+API_KEY+'&units=metric')
         data = json.loads(req.content)
 
         info = {
