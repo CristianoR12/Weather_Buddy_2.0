@@ -1,11 +1,19 @@
 from flask import Flask, render_template, redirect, request, jsonify
+from flask_caching import Cache
 from flask_bootstrap import Bootstrap
 import mysql.connector
 import requests
 import json
 
+config = {
+    "DEBUG": True,          # some Flask specific configs
+    "CACHE_TYPE": "SimpleCache",  # Flask-Caching related configs
+    "CACHE_DEFAULT_TIMEOUT": 300
+}
 app = Flask(__name__)
-app.config['DEBUG'] = True
+
+app.config.from_mapping(config)
+cache = Cache(app)
 
 bootstrap = Bootstrap(app)
 
@@ -122,6 +130,7 @@ def test():
 
 #Route to get the cache data for the specified city_name
 @app.route("/weather/<city_name>", methods=['GET'])
+@cache.cached(timeout=300)#cache must live for 300s or 5min
 def get_city_name(city_name):
     c_name=str(city_name)        
     db.execute(f"SELECT * FROM forecast WHERE city = '{city_name}'")    
@@ -143,6 +152,7 @@ def get_city_name(city_name):
    
 #Route to get all the cached cities, up to the latest 'n' entries or max_number 
 @app.route("/weather", methods=['GET'])
+@cache.cached(timeout=300)#cache must live for 300s or 5min
 def max_number():
     max_number = int(request.args.get("max"))       
     db.execute(f"SELECT * FROM forecast WHERE id <= {max_number}")
