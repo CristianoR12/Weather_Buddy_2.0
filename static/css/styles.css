@@ -2,7 +2,7 @@
     font-family: American Typewriter, serif;
     font-size: 1.4em;
     width: 220px;
-    height: 190px;
+    height: 230px;
     margin: 0 auto;    
     text-align: center;    
     position: relative;
@@ -13,7 +13,7 @@
 
 .container2 {
     width: 1350px;   
-    height: 220px;
+    height: 260px;
     margin: 0 auto;
     background-color: rgb(229, 242, 253,0.7);
     text-align: center;    
@@ -24,7 +24,7 @@
 .col {
     font-family: American Typewriter, serif;
     font-size: 1.4em;
-    height: 180px;   
+    height: 230px;   
     margin-top: 20px;
     margin-bottom: 10px;
     margin-right: 25px;

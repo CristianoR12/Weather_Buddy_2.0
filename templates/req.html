@@ -4,14 +4,21 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">  
 
     <div class="container">  
-        {% if (arguments[0]['id0'] == 1) and (arguments[1]['id1'] == 0) %}     
+        {% if (arguments[0]['id0'] == 1) and (arguments[1]['id1'] == 0) %}
+            <figure class="image is-60x60">
+                    <img src="http://openweathermap.org/img/w/{{ arguments[0]['icon0'] }}.png" alt="Image">
+            </figure>             
             <p>{{arguments[0]['city0']}}</p>
             <div class="t">
             <p>{{arguments[0]['temperature0']}}<span>°C</span></p>
             </div>
-            <p>{{arguments[0]['description0']}}</p>
+            <p>{{arguments[0]['description0']}}</p>        
+
 
         {% elif (arguments[0]['id0'] == 1) and (arguments[1]['id1'] == 2) and (arguments[2]['id2'] == 0) %}
+            <figure class="image is-60x60">
+                <img src="http://openweathermap.org/img/w/{{ arguments[1]['icon1'] }}.png" alt="Image">
+            </figure>  
             <p>{{arguments[1]['city1']}}</p>
             <div class="t">
             <p>{{arguments[1]['temperature1']}}<span>°C</span></p>
@@ -19,6 +26,9 @@
             <p>{{arguments[1]['description1']}}</p>
 
         {% elif (arguments[0]['id0'] == 1) and (arguments[1]['id1'] == 2) and (arguments[2]['id2'] == 3) and (arguments[3]['id3'] == 0)%}
+            <figure class="image is-60x60">
+                <img src="http://openweathermap.org/img/w/{{ arguments[2]['icon2'] }}.png" alt="Image">
+            </figure>     
             <p>{{arguments[2]['city2']}}</p>
             <div class="t">
             <p>{{arguments[2]['temperature2']}}<span>°C</span></p>
@@ -26,6 +36,9 @@
             <p>{{arguments[2]['description2']}}</p>
 
         {% elif (arguments[0]['id0'] == 1) and (arguments[1]['id1'] == 2) and (arguments[2]['id2'] == 3) and (arguments[3]['id3'] == 4) and (arguments[4]['id4'] == 0)%}
+            <figure class="image is-60x60">
+                <img src="http://openweathermap.org/img/w/{{ arguments[3]['icon3'] }}.png" alt="Image">
+            </figure> 
             <p>{{arguments[3]['city3']}}</p>
             <div class="t">
             <p>{{arguments[3]['temperature3']}}<span>°C</span></p>
@@ -33,6 +46,9 @@
             <p>{{arguments[3]['description3']}}</p>
 
         {% elif (arguments[0]['id0'] == 1) and (arguments[1]['id1'] == 2) and (arguments[2]['id2'] == 3) and (arguments[3]['id3'] == 4) and (arguments[4]['id4'] == 5) %}
+            <figure class="image is-60x60">
+                <img src="http://openweathermap.org/img/w/{{ arguments[4]['icon4'] }}.png" alt="Image">
+            </figure> 
             <p>{{arguments[4]['city4']}}</p>
             <div class="t">
             <p>{{arguments[4]['temperature4']}}<span>°C</span></p>
@@ -43,14 +59,20 @@
     </div>
     <div class="container2">
         <div class="row">                
-                <div class="col">           
+                <div class="col"> 
+                    <figure class="image is-60x60">
+                        <img src="http://openweathermap.org/img/w/{{ arguments[0]['icon0'] }}.png" alt="Image">
+                    </figure>           
                     <p>{{arguments[0]['city0']}}</p>
                     <div class="t">
                     <p>{{arguments[0]['temperature0']}}<span>°C</span></p>
                     </div>
                     <p>{{arguments[0]['description0']}}</p>
                 </div> 
-                <div class="col">           
+                <div class="col">
+                    <figure class="image is-60x60">
+                        <img src="http://openweathermap.org/img/w/{{ arguments[1]['icon1'] }}.png" alt="Image">
+                    </figure>            
                     <p>{{arguments[1]['city1']}}</p>
                     <div class="t">
                     <p>{{arguments[1]['temperature1']}}<span>°C</span></p>
@@ -58,6 +80,9 @@
                     <p>{{arguments[1]['description1']}}</p>
                 </div>
                 <div class="col">           
+                    <figure class="image is-60x60">
+                        <img src="http://openweathermap.org/img/w/{{ arguments[2]['icon2'] }}.png" alt="Image">
+                    </figure> 
                     <p>{{arguments[2]['city2']}}</p>
                     <div class="t">
                     <p>{{arguments[2]['temperature2']}}<span>°C</span></p>
@@ -65,13 +90,19 @@
                     <p>{{arguments[2]['description2']}}</p>
                 </div>
                 <div class="col">           
+                    <figure class="image is-60x60">
+                        <img src="http://openweathermap.org/img/w/{{ arguments[3]['icon3'] }}.png" alt="Image">
+                    </figure> 
                     <p>{{arguments[3]['city3']}}</p>
                     <div class="t">
                     <p>{{arguments[3]['temperature3']}}<span>°C</span></p>
                     </div>
                     <p>{{arguments[3]['description3']}}</p>
                 </div>
-                <div class="col">           
+                <div class="col">    
+                    <figure class="image is-60x60">
+                        <img src="http://openweathermap.org/img/w/{{ arguments[4]['icon4'] }}.png" alt="Image">
+                    </figure>        
                     <p>{{arguments[4]['city4']}}</p>
                     <div class="t">
                     <p>{{arguments[4]['temperature4']}}<span>°C</span></p>

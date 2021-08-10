@@ -20,7 +20,7 @@ mydb = mysql.connector.connect(
 #Database table management => Checks if there is a preexistent table  
 db = mydb.cursor()
 db.execute("DROP TABLE IF EXISTS forecast")
-db.execute("CREATE TABLE forecast (id INT AUTO_INCREMENT PRIMARY KEY, city TEXT NOT NULL, temperature TEXT NOT NULL, description TEXT NOT NULL)") 
+db.execute("CREATE TABLE forecast (id INT AUTO_INCREMENT PRIMARY KEY, city TEXT NOT NULL, temperature TEXT NOT NULL, description TEXT NOT NULL, icon TEXT NOT NULL)") 
 
 #Index route
 @app.route('/')
@@ -46,10 +46,11 @@ def register():
     city=data['name']
     temperature=int(data['main']['temp'])
     description=data['weather'][0]['description']
+    icon=data['weather'][0]['icon']
 
     #Data picked from JSON sent to the database
-    sql = "INSERT INTO forecast (city, temperature, description) VALUES (%s, %s, %s)"
-    val = (city, temperature, description)
+    sql = "INSERT INTO forecast (city, temperature, description, icon) VALUES (%s, %s, %s, %s)"
+    val = (city, temperature, description, icon)
     db.execute(sql,val)
     mydb.commit()
     
@@ -60,19 +61,19 @@ def register():
 def test():    
 
     db.execute("SELECT * FROM forecast WHERE id = 1")
-    myList = [dict(id0=row1[0],city0=row1[1],temperature0=row1[2], description0=row1[3]) for row1 in db.fetchall()]
+    myList = [dict(id0=row1[0],city0=row1[1],temperature0=row1[2], description0=row1[3], icon0=row1[4]) for row1 in db.fetchall()]
     
     db.execute("SELECT * FROM forecast WHERE id = 2")
-    myList2 = [dict(id1=row2[0],city1=row2[1],temperature1=row2[2], description1=row2[3]) for row2 in db.fetchall()]
+    myList2 = [dict(id1=row2[0],city1=row2[1],temperature1=row2[2], description1=row2[3], icon1=row2[4]) for row2 in db.fetchall()]
 
     db.execute("SELECT * FROM forecast WHERE id = 3")
-    myList3 = [dict(id2=row2[0],city2=row2[1],temperature2=row2[2], description2=row2[3]) for row2 in db.fetchall()]
+    myList3 = [dict(id2=row2[0],city2=row2[1],temperature2=row2[2], description2=row2[3], icon2=row2[4]) for row2 in db.fetchall()]
 
     db.execute("SELECT * FROM forecast WHERE id = 4")
-    myList4 = [dict(id3=row2[0],city3=row2[1],temperature3=row2[2], description3=row2[3]) for row2 in db.fetchall()]
+    myList4 = [dict(id3=row2[0],city3=row2[1],temperature3=row2[2], description3=row2[3], icon3=row2[4] ) for row2 in db.fetchall()]
 
     db.execute("SELECT * FROM forecast WHERE id = 5")
-    myList5 = [dict(id4=row2[0],city4=row2[1],temperature4=row2[2], description4=row2[3]) for row2 in db.fetchall()]
+    myList5 = [dict(id4=row2[0],city4=row2[1],temperature4=row2[2], description4=row2[3], icon4=row2[4]) for row2 in db.fetchall()]
     
     if not (myList2):
         myList2 = [
@@ -80,7 +81,8 @@ def test():
             'id1': 0, 
             'city1': '', 
             'temperature1': '', 
-            'description1': ''
+            'description1': '',
+            'icon1': ''
         }
         ]    
     if not (myList3):
@@ -89,7 +91,8 @@ def test():
             'id2': 0, 
             'city2': '', 
             'temperature2': '', 
-            'description2': ''
+            'description2': '',
+            'icon2': ''
         }
         ]
     if not (myList4):
@@ -98,7 +101,8 @@ def test():
             'id3': 0, 
             'city3': '', 
             'temperature3': '', 
-            'description3': ''
+            'description3': '',
+            'icon3': ''
         }
         ]
     if not (myList5):
@@ -107,7 +111,8 @@ def test():
             'id4': 0, 
             'city4': '', 
             'temperature4': '', 
-            'description4': ''
+            'description4': '',
+            'icon4': ''
         }
         ]
     myList_Total =  myList + myList2 + myList3 + myList4 + myList5 
